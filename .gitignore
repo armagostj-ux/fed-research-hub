@@ -1,0 +1,8 @@
+# generated build outputs (rebuilt by the workflow each run)
+fed-research-hub.html
+page_data.json
+live_data.json
+public/
+feeds/
+__pycache__/
+*.pyc

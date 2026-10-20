@@ -1,0 +1,375 @@
+<title>Federal Reserve Research Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Serif:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
+<style>
+  /* Material Design 3 (Material You) treatment: top app bar, rounded search bar,
+     filter chips with check states, elevated bank cards holding reverse-chron
+     article lists. Research is ordered and styled ahead of news. Color roles are
+     seeded from the WealthPlan navy/petrol/copper brand. */
+  :root {
+    --primary: #006891; --on-primary: #FFFFFF;
+    --primary-container: #BDE8F4; --on-primary-container: #001F28;
+    --secondary: #9C4A0E; --secondary-container: #FFDCC4; --on-secondary-container: #351000;
+    --surface: #FBF8F3;
+    --surface-container-low: #F5F1EA; --surface-container: #EFEBE3;
+    --surface-container-high: #E9E4DC; --surface-container-highest: #E3DED6;
+    --on-surface: #1A1C1D; --on-surface-variant: #46474A;
+    --outline: #76777A; --outline-variant: #D5D2CB;
+    --appbar-bg: #11284B; --appbar-fg: #FFFFFF; --appbar-accent: #9ED6DF;
+    --c-research: #006881; --c-research-cont: #BBE9F4;
+    --c-blog: #8F4C00; --c-blog-cont: #FFDCBE;
+    --c-news: #3F51B5; --c-news-cont: #DEE0FF;
+    --c-pub: #6750A4; --c-pub-cont: #EADDFF;
+    --state: rgba(0,0,0,.06); --state-press: rgba(0,0,0,.10);
+    --elev-1: 0 1px 2px rgba(17,40,75,.14), 0 1px 3px 1px rgba(17,40,75,.08);
+    --elev-2: 0 1px 2px rgba(17,40,75,.18), 0 2px 6px 2px rgba(17,40,75,.10);
+    --elev-3: 0 4px 8px 3px rgba(17,40,75,.10), 0 1px 3px rgba(17,40,75,.18);
+    --sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --brand-serif: "Roboto Serif", Georgia, serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --primary: #87D2E6; --on-primary: #00363F; --primary-container: #004E5B; --on-primary-container: #B2EBFF;
+      --secondary: #FFB68A; --secondary-container: #7A3500; --on-secondary-container: #FFDCC4;
+      --surface: #0E1416; --surface-container-low: #171C1F; --surface-container: #1B2123;
+      --surface-container-high: #252B2E; --surface-container-highest: #303639;
+      --on-surface: #DEE3E5; --on-surface-variant: #BFC8CB; --outline: #899295; --outline-variant: #3F484B;
+      --appbar-bg: #13203A; --appbar-fg: #E7ECF4; --appbar-accent: #9ED6DF;
+      --c-research: #5FD4ED; --c-research-cont: #00404F; --c-blog: #FFB77C; --c-blog-cont: #5E3300;
+      --c-news: #BCC2FF; --c-news-cont: #2B3980; --c-pub: #D0BCFF; --c-pub-cont: #4F378B;
+      --state: rgba(255,255,255,.08); --state-press: rgba(255,255,255,.12);
+      --elev-1: 0 1px 3px 1px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.5);
+      --elev-2: 0 2px 6px 2px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.5);
+      --elev-3: 0 4px 8px 3px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --primary: #87D2E6; --on-primary: #00363F; --primary-container: #004E5B; --on-primary-container: #B2EBFF;
+    --secondary: #FFB68A; --secondary-container: #7A3500; --on-secondary-container: #FFDCC4;
+    --surface: #0E1416; --surface-container-low: #171C1F; --surface-container: #1B2123;
+    --surface-container-high: #252B2E; --surface-container-highest: #303639;
+    --on-surface: #DEE3E5; --on-surface-variant: #BFC8CB; --outline: #899295; --outline-variant: #3F484B;
+    --appbar-bg: #13203A; --appbar-fg: #E7ECF4; --appbar-accent: #9ED6DF;
+    --c-research: #5FD4ED; --c-research-cont: #00404F; --c-blog: #FFB77C; --c-blog-cont: #5E3300;
+    --c-news: #BCC2FF; --c-news-cont: #2B3980; --c-pub: #D0BCFF; --c-pub-cont: #4F378B;
+    --state: rgba(255,255,255,.08); --state-press: rgba(255,255,255,.12);
+    --elev-1: 0 1px 3px 1px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.5);
+    --elev-2: 0 2px 6px 2px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.5);
+    --elev-3: 0 4px 8px 3px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--surface); color: var(--on-surface); font-family: var(--sans); line-height: 1.45; }
+  .material-symbols-outlined { font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal;
+    line-height: 1; display: inline-block; white-space: nowrap; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga"; }
+  .wrap { max-width: 1240px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+  /* Top app bar */
+  .appbar { background: var(--appbar-bg); color: var(--appbar-fg); }
+  .appbar .wrap { padding-block: 22px 20px; }
+  .appbar .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase; font-weight: 500; color: var(--appbar-accent); margin: 0 0 8px; }
+  .appbar .eyebrow .material-symbols-outlined { font-size: 18px; }
+  .appbar h1 { font-family: var(--brand-serif); font-weight: 600; font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.15; margin: 0; text-wrap: balance; }
+  .appbar .supporting { margin: 10px 0 0; max-width: 64ch; color: #D6E2F0; font-size: .95rem; }
+  :root[data-theme="dark"] .appbar .supporting, :root:not([data-theme="light"]) .appbar .supporting { color: var(--on-surface-variant); }
+  .appbar-top { display: flex; gap: 16px 20px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+  .appbar-head { min-width: 0; }
+  .refresh-wrap { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .refresh-btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px 0 15px; border: 0;
+    border-radius: 20px; cursor: pointer; background: var(--appbar-accent); color: #11284B; font-family: var(--sans);
+    font-size: .86rem; font-weight: 600; box-shadow: var(--elev-1); }
+  .refresh-btn:hover { box-shadow: var(--elev-2); }
+  .refresh-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .refresh-btn .material-symbols-outlined { font-size: 20px; }
+  .refresh-btn.spin .material-symbols-outlined { animation: spin .8s linear; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .updated-note { font-size: .72rem; color: var(--appbar-accent); }
+  .toast { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(16px);
+    z-index: 40; background: var(--surface-container-highest); color: var(--on-surface); font-size: .82rem; font-weight: 500;
+    padding: 12px 18px; border-radius: 10px; box-shadow: var(--elev-3); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; max-width: 86vw; }
+  .toast.show { opacity: 1; transform: translateX(-50%); }
+
+  /* Sticky command bar */
+  .command { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); box-shadow: var(--elev-1); }
+  .command .wrap { padding-block: 14px 12px; display: flex; flex-direction: column; gap: 12px; }
+  .searchbar { display: flex; align-items: center; gap: 12px; }
+  .search-field { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; height: 56px;
+    background: var(--surface-container-high); border-radius: 28px; padding: 0 8px 0 16px; }
+  .search-field > .material-symbols-outlined { color: var(--on-surface-variant); font-size: 24px; flex: 0 0 auto; }
+  #search { flex: 1 1 auto; min-width: 0; height: 100%; border: 0; background: transparent; font-family: var(--sans);
+    font-size: 1rem; color: var(--on-surface); padding: 0 8px; }
+  #search::placeholder { color: var(--on-surface-variant); }
+  #search:focus { outline: none; }
+  .search-field:focus-within { outline: 2px solid var(--primary); }
+  .icon-btn { flex: 0 0 auto; width: 40px; height: 40px; border: 0; border-radius: 50%; cursor: pointer;
+    background: transparent; color: var(--on-surface-variant); display: grid; place-items: center; }
+  .icon-btn:hover { background: var(--state); }
+  .icon-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  .icon-btn[hidden] { display: none; }
+  .count { font-size: .8rem; color: var(--on-surface-variant); white-space: nowrap; font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border: 1px solid var(--outline-variant);
+    border-radius: 8px; background: transparent; color: var(--on-surface-variant); font-family: var(--sans); font-size: .82rem;
+    font-weight: 500; cursor: pointer; white-space: nowrap; }
+  .chip:hover { background: var(--state); }
+  .chip[aria-pressed="true"] { background: var(--secondary-container); color: var(--on-secondary-container); border-color: transparent; }
+  .chip[aria-pressed="true"] .check { display: inline-block; }
+  .chip .check { display: none; font-size: 18px; margin-left: -4px; }
+  .chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  .chip .dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  .rail { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .rail .rail-label { font-size: .75rem; color: var(--on-surface-variant); margin-right: 2px; }
+  .rail a { text-decoration: none; font-size: .78rem; font-weight: 500; font-variant-numeric: tabular-nums;
+    color: var(--on-surface-variant); background: var(--surface-container); border-radius: 8px; padding: 4px 9px; line-height: 1.2; }
+  .rail a:hover { background: var(--primary-container); color: var(--on-primary-container); }
+  .rail a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  /* Main */
+  main .wrap { padding-block: 22px 96px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 18px; align-items: start; }
+  .card { background: var(--surface-container-low); border-radius: 16px; box-shadow: var(--elev-1); overflow: hidden;
+    display: flex; flex-direction: column; scroll-margin-top: 150px; }
+  .card-head { display: flex; gap: 14px; align-items: center; padding: 16px 18px 10px; }
+  .seal { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; background: var(--primary-container);
+    color: var(--on-primary-container); display: grid; place-items: center; text-align: center; line-height: 1; }
+  .seal .num { font-family: var(--brand-serif); font-weight: 600; font-size: 1.2rem; }
+  .seal .ltr { font-size: .56rem; letter-spacing: .1em; opacity: .9; margin-top: 2px; }
+  .card-head .meta { min-width: 0; }
+  .card-head h3 { margin: 0; font-size: 1.05rem; font-weight: 500; line-height: 1.25; }
+  .card-head h3 a { color: var(--on-surface); text-decoration: none; }
+  .card-head h3 a:hover { color: var(--primary); }
+  .card-head .city { margin: 2px 0 0; font-size: .78rem; color: var(--on-surface-variant); }
+
+  .sections { padding: 2px 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .section { border-radius: 12px; padding: 6px 6px 8px; }
+  .section.research { background: color-mix(in srgb, var(--c-research-cont) 26%, transparent); }
+  .sec-head { display: flex; align-items: center; gap: 8px; padding: 6px 6px 4px; }
+  .sec-icon { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; }
+  .sec-icon .material-symbols-outlined { font-size: 17px; }
+  .sec-icon.research { background: var(--c-research-cont); color: var(--c-research); }
+  .sec-icon.blog { background: var(--c-blog-cont); color: var(--c-blog); }
+  .sec-icon.news { background: var(--c-news-cont); color: var(--c-news); }
+  .sec-icon.publications { background: var(--c-pub-cont); color: var(--c-pub); }
+  .sec-title { font-size: .82rem; font-weight: 700; letter-spacing: .02em; color: var(--on-surface); flex: 1 1 auto; min-width: 0; }
+  .sec-title .n { color: var(--on-surface-variant); font-weight: 500; }
+  .sec-all { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 2px; font-size: .72rem; font-weight: 600;
+    text-decoration: none; color: var(--primary); padding: 3px 6px; border-radius: 7px; }
+  .sec-all:hover { background: var(--state); }
+  .sec-all .material-symbols-outlined { font-size: 14px; }
+  .sec-all:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  .arts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .art { display: flex; gap: 10px; align-items: baseline; text-decoration: none; color: var(--on-surface);
+    padding: 7px 8px; border-radius: 9px; }
+  .art:hover { background: var(--state); }
+  .art:active { background: var(--state-press); }
+  .art:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  .art .date { flex: 0 0 auto; width: 78px; font-size: .72rem; color: var(--on-surface-variant);
+    font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .art .t { flex: 1 1 auto; min-width: 0; font-size: .9rem; line-height: 1.35; }
+  .section.news .art .t { font-size: .85rem; color: var(--on-surface-variant); }
+  .art:hover .t { color: var(--primary); }
+  .art .go { flex: 0 0 auto; font-size: 16px; color: var(--on-surface-variant); opacity: 0; transition: opacity .15s; }
+  .art:hover .go, .art:focus-visible .go { opacity: 1; }
+
+  .empty { display: none; text-align: center; color: var(--on-surface-variant); padding: 56px 16px; }
+  .empty.show { display: block; }
+  .empty .material-symbols-outlined { font-size: 48px; opacity: .5; display: block; margin: 0 auto 10px; }
+  .empty strong { color: var(--on-surface); }
+
+  .fab { position: fixed; z-index: 30; right: max(18px, env(safe-area-inset-right, 0px));
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; border: 0; border-radius: 16px;
+    cursor: pointer; background: var(--primary-container); color: var(--on-primary-container); box-shadow: var(--elev-3);
+    display: grid; place-items: center; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .2s, transform .2s; }
+  .fab.show { opacity: 1; transform: none; pointer-events: auto; }
+  .fab:hover { box-shadow: var(--elev-2); }
+  .fab:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  .fab .material-symbols-outlined { font-size: 24px; }
+
+  footer { background: var(--surface-container-low); }
+  footer .wrap { padding-block: 20px 28px; color: var(--on-surface-variant); font-size: .78rem; }
+  footer code { background: var(--surface-container-high); padding: 1px 5px; border-radius: 4px; }
+  footer a { color: var(--primary); }
+
+  .card.hide, .section.hide, .art.hide { display: none; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } .rail { display: none; } .art .date { width: 66px; } }
+</style>
+
+<header class="appbar">
+  <div class="wrap">
+    <div class="appbar-top">
+      <div class="appbar-head">
+        <p class="eyebrow"><span class="material-symbols-outlined">account_balance</span>Federal Reserve System &middot; 12 Districts</p>
+        <h1>Federal Reserve Research Hub</h1>
+      </div>
+      <div class="refresh-wrap">
+        <button class="refresh-btn" id="refresh" type="button" title="Reload the latest published snapshot of the hub">
+          <span class="material-symbols-outlined">refresh</span>Refresh data
+        </button>
+        <span class="updated-note" id="updated-note"></span>
+      </div>
+    </div>
+    <p class="supporting">The latest working papers, economic research, blogs, and news from all twelve regional Reserve Banks and the Board of Governors &mdash; actual titles pulled in, grouped by bank, with research listed first. Click any title to open the source.</p>
+  </div>
+</header>
+
+<div class="command">
+  <div class="wrap">
+    <div class="searchbar">
+      <label class="search-field">
+        <span class="material-symbols-outlined">search</span>
+        <input id="search" type="search" placeholder="Search every title (e.g. &ldquo;tariffs&rdquo;, &ldquo;inflation&rdquo;, &ldquo;AI&rdquo;, a bank)" autocomplete="off" aria-label="Search article titles">
+        <button class="icon-btn" id="clear" type="button" aria-label="Clear search" hidden><span class="material-symbols-outlined">close</span></button>
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by type">
+      <button class="chip" data-filter="all" aria-pressed="true"><span class="check material-symbols-outlined">check</span>All</button>
+      <button class="chip" data-filter="research" aria-pressed="false"><span class="check material-symbols-outlined">check</span><span class="dot" style="background:var(--c-research)"></span>Research</button>
+      <button class="chip" data-filter="publications" aria-pressed="false"><span class="check material-symbols-outlined">check</span><span class="dot" style="background:var(--c-pub)"></span>Publications</button>
+      <button class="chip" data-filter="blog" aria-pressed="false"><span class="check material-symbols-outlined">check</span><span class="dot" style="background:var(--c-blog)"></span>Blogs</button>
+      <button class="chip" data-filter="news" aria-pressed="false"><span class="check material-symbols-outlined">check</span><span class="dot" style="background:var(--c-news)"></span>News</button>
+    </div>
+    <nav class="rail" id="rail" aria-label="Jump to district"><span class="rail-label">Jump to</span></nav>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="cards" id="cards"></div>
+    <div class="empty" id="empty"><span class="material-symbols-outlined">search_off</span>No titles match <strong id="empty-q"></strong>. Try a topic like &ldquo;inflation,&rdquo; a bank, or clear the filter.</div>
+  </div>
+</main>
+
+<button class="fab" id="fab" type="button" aria-label="Back to top"><span class="material-symbols-outlined">arrow_upward</span></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer>
+  <div class="wrap">
+    Titles pulled from official Federal Reserve RSS feeds (Board of Governors, New York, Richmond, Atlanta) and the <a href="https://ideas.repec.org" target="_blank" rel="noopener">RePEc/IDEAS</a> research index (working-paper series for the remaining banks). Research and working papers are listed first; news and speeches last. &ldquo;View all&rdquo; opens each bank&rsquo;s full archive. Snapshot &mdash; refreshed weekly; not affiliated with the Federal Reserve.
+  </div>
+</footer>
+
+<script id="data" type="application/json">/*DATA*/</script>
+<script>
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const ICON = { research: "description", blog: "rss_feed", news: "campaign", publications: "menu_book" };
+  const cardsEl = document.getElementById("cards");
+  const railEl = document.getElementById("rail");
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const emptyQ = document.getElementById("empty-q");
+  const searchEl = document.getElementById("search");
+  const clearBtn = document.getElementById("clear");
+  let activeFilter = "all", query = "";
+  let totalArticles = 0;
+
+  const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  DATA.banks.forEach(b => {
+    // quick-jump rail
+    const a = document.createElement("a");
+    a.href = "#d" + (b.sys ? "0" : b.num);
+    a.textContent = b.sys ? "Fed" : b.num;
+    a.title = b.name;
+    railEl.appendChild(a);
+
+    const card = document.createElement("article");
+    card.className = "card";
+    card.id = "d" + (b.sys ? "0" : b.num);
+
+    let secHTML = "";
+    b.sections.forEach(s => {
+      let arts = "";
+      s.items.forEach(it => {
+        const ds = (it.t + " " + b.short + " " + b.name + " " + b.city + " " + s.label).toLowerCase();
+        arts += '<li class="art-li"><a class="art" href="' + esc(it.u) + '" target="_blank" rel="noopener" data-s="' + esc(ds) + '">'
+          + '<span class="date">' + esc(it.d || "") + '</span>'
+          + '<span class="t">' + esc(it.t) + '</span>'
+          + '<span class="go material-symbols-outlined">north_east</span></a></li>';
+        totalArticles++;
+      });
+      secHTML += '<section class="section ' + s.type + '" data-type="' + s.type + '">'
+        + '<div class="sec-head"><span class="sec-icon ' + s.type + '"><span class="material-symbols-outlined">' + ICON[s.type] + '</span></span>'
+        + '<span class="sec-title">' + esc(s.label) + ' <span class="n">(' + s.items.length + ')</span></span>'
+        + '<a class="sec-all" href="' + esc(s.hub) + '" target="_blank" rel="noopener">View all<span class="material-symbols-outlined">north_east</span></a></div>'
+        + '<ul class="arts">' + arts + '</ul></section>';
+    });
+
+    card.innerHTML =
+      '<div class="card-head"><div class="seal"><span class="num">' + (b.sys ? "Fed" : b.num) + '</span>'
+      + (b.ltr ? '<span class="ltr">' + b.ltr + '</span>' : '') + '</div>'
+      + '<div class="meta"><h3><a href="' + esc(b.home) + '" target="_blank" rel="noopener">' + esc(b.name) + '</a></h3>'
+      + '<p class="city">' + b.city + '</p></div></div>'
+      + '<div class="sections">' + secHTML + '</div>';
+    cardsEl.appendChild(card);
+  });
+
+  function apply(){
+    let shownArts = 0, shownBanks = 0;
+    document.querySelectorAll(".card").forEach(card => {
+      let cardArts = 0;
+      card.querySelectorAll(".section").forEach(sec => {
+        const typeOk = activeFilter === "all" || sec.dataset.type === activeFilter;
+        let secArts = 0;
+        sec.querySelectorAll(".art-li").forEach(li => {
+          const a = li.firstChild;
+          const match = typeOk && (!query || a.dataset.s.includes(query));
+          li.classList.toggle("hide", !match);
+          if (match) secArts++;
+        });
+        sec.classList.toggle("hide", secArts === 0);
+        cardArts += secArts;
+      });
+      card.classList.toggle("hide", cardArts === 0);
+      if (cardArts > 0){ shownBanks++; shownArts += cardArts; }
+    });
+    countEl.textContent = shownArts + " articles · " + shownBanks + (shownBanks === 1 ? " bank" : " banks");
+    const none = shownArts === 0;
+    emptyEl.classList.toggle("show", none);
+    if (none) emptyQ.textContent = query ? '“' + searchEl.value.trim() + '”' : "this filter";
+  }
+
+  document.getElementById("chips").addEventListener("click", e => {
+    const btn = e.target.closest(".chip"); if (!btn) return;
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === btn ? "true" : "false"));
+    apply();
+  });
+  searchEl.addEventListener("input", () => { query = searchEl.value.trim().toLowerCase(); clearBtn.hidden = !searchEl.value; apply(); });
+  clearBtn.addEventListener("click", () => { searchEl.value = ""; query = ""; clearBtn.hidden = true; apply(); searchEl.focus(); });
+
+  const fab = document.getElementById("fab");
+  const onScroll = () => fab.classList.toggle("show", window.scrollY > 520);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  fab.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  // "updated" note + refresh control
+  const d = new Date(DATA.generated + "T00:00:00");
+  const upd = d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  document.getElementById("updated-note").textContent = "Data as of " + upd;
+
+  const toast = document.getElementById("toast");
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg; toast.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+  }
+  const rb = document.getElementById("refresh");
+  rb.addEventListener("click", () => {
+    rb.classList.add("spin");
+    showToast("Loading the latest published snapshot…");
+    setTimeout(() => location.reload(), 700);
+  });
+
+  onScroll(); apply();
+</script>
