@@ -27,7 +27,7 @@ python refresh_fed_hub.py
 
 ## Notes
 
-- GitHub disables scheduled workflows after 60 days with no repository activity; the
-  weekly deploy commit keeps it active, but if it ever pauses, open the Actions tab and
-  run it once to re-arm it.
+- GitHub disables scheduled workflows after 60 days with no commit activity. The workflow
+  makes a small weekly "heartbeat" commit (`last-refreshed.txt`) so it stays active on its
+  own. If it ever pauses anyway, open the **Actions** tab and run it once to re-arm it.
 - Not affiliated with the Federal Reserve. Links open each bank's official site.

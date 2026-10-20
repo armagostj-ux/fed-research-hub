@@ -7,7 +7,7 @@ on:
   workflow_dispatch: {}   # lets you run it on demand from the Actions tab
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -28,6 +28,14 @@ jobs:
           python refresh_fed_hub.py
           mkdir -p public
           cp fed-research-hub.html public/index.html
+      - name: Heartbeat commit (keeps the weekly schedule from auto-disabling)
+        run: |
+          date -u +"Last refreshed: %Y-%m-%dT%H:%M:%SZ" > last-refreshed.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add last-refreshed.txt
+          git commit -m "chore: weekly refresh heartbeat [skip ci]" || echo "nothing to commit"
+          git push || echo "push skipped"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
